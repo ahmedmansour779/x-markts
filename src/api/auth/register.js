@@ -26,7 +26,7 @@ export async function handelSignup(e) {
     formdata.append("password_confirmation", data.password);
 
     try {
-        const response = await fetch("https://api.oceanmarteg.com/api/user/register", {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/register`, {
             method: "POST",
             headers: myHeaders,
             body: formdata,

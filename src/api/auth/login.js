@@ -18,7 +18,7 @@ export const handelLogin = async (e) => {
     formdata.append("password", data.password);
 
     try {
-        const response = await fetch("https://api.oceanmarteg.com/api/user/login", {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/login`, {
             method: "POST",
             headers: myHeaders,
             body: formdata,

@@ -19,7 +19,7 @@ export const subscribeUser = async (e) => {
         };
 
         const response = await fetch(
-            `https://api.oceanmarteg.com/api/subscription?email=${Data.emailForm}`,
+            `${process.env.NEXT_PUBLIC_API_URL}/api/subscription?email=${Data.emailForm}`,
             requestOptions
         );
 
