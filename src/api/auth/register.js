@@ -1,6 +1,7 @@
+
 import { returnData } from "..";
 
-export async function handelSignup(e) {
+export async function handelSignup(e, setMassage) {
     e.preventDefault();
     const data = returnData(e)
     console.log(data);
@@ -19,7 +20,7 @@ export async function handelSignup(e) {
         formdata.append("last_name", wordsName[1]);
     } else {
         formdata.append("first_name", wordsName[0]);
-        formdata.append("last_name", " ");
+        formdata.append("last_name", wordsName[0]);
     }
     formdata.append("email", data.email);
     formdata.append("password", data.password);
@@ -32,9 +33,19 @@ export async function handelSignup(e) {
             body: formdata,
             redirect: "follow"
         });
-        const result = await response.text();
+        if (response.status === 200) {
+            window.location.replace("/verifiedEmailOtp")
+            console.log("done");
+        }
+        const result = await response.json();
         console.log(result);
+        if (result.message.includes("The email has already been taken")) {
+            setMassage("The email has already been taken")
+        } else {
+            window.location.replace("/verifiedEmailOtp")
+            console.log("done");
+        }
     } catch (error) {
-        console.error("Login failed:", error);
+        console.log("Login failed:", error);
     }
 }

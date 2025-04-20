@@ -3,7 +3,10 @@ import { handelSignup } from "@/api/auth/register";
 import login from "@images/login.jpeg";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 export default function page() {
+  const [massage, setMassage] = useState("")
+
   return (
     <>
       <section className="flat-spacing-21">
@@ -29,7 +32,7 @@ export default function page() {
                   // id="contactform"
                   // action="./contact/contact-process.php"
                   // method="post"
-                  onSubmit={(e) => { handelSignup(e) }}
+                  onSubmit={(e) => { handelSignup(e, setMassage) }}
 
                 >
                   <div className=" mb_15">
@@ -55,7 +58,7 @@ export default function page() {
                       />
                     </fieldset>
                   </div>
-                  <div className=" mb_15">
+                  {/* <div className=" mb_15">
                     <fieldset className="w-100">
                       <input
                         autoComplete="abc@xyz.com"
@@ -66,7 +69,7 @@ export default function page() {
                         name="Phone"
                       />
                     </fieldset>
-                  </div>
+                  </div> */}
 
                   <div className="d-flex gap-15 mb_15">
                     <fieldset className="w-100">
@@ -79,7 +82,7 @@ export default function page() {
                       />
                     </fieldset>
                   </div>
-                  <div className="d-flex gap-15 mb_15">
+                  {/* <div className="d-flex gap-15 mb_15">
                     <fieldset className="w-100">
                       <input
                         id="code"
@@ -97,7 +100,10 @@ export default function page() {
                         <span className="text-warning me-1">5</span>
                       </div>
                     </fieldset>
-                  </div>
+                  </div> */}
+                  {
+                    massage && <p className="text-danger">{massage}</p>
+                  }
                   <div className="send-wrap">
                     <button
                       type="submit"
